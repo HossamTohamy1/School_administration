@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
+using School_managment.Common.Models;
 using School_managment.Features.Teachers.Commands;
 using School_managment.Features.Teachers.DTOs;
 using School_managment.Features.Teachers.Queries;
@@ -16,29 +15,22 @@ namespace School_managment.Features.Teachers.Orchestrators
             _mediator = mediator;
         }
 
-        public async Task<TeacherDto> AddTeacherAsync(AddTeacherDto dto)
-        {
-            return await _mediator.Send(new AddTeacherCommand(dto));
-        }
+        public Task<TeacherDto> AddTeacherAsync(AddTeacherDto dto) =>
+            _mediator.Send(new AddTeacherCommand(dto));
 
-        public async Task<TeacherDto> UpdateTeacherAsync(UpdateTeacherDto dto)
-        {
-            return await _mediator.Send(new UpdateTeacherCommand(dto));
-        }
+        public Task<TeacherDto> UpdateTeacherAsync(UpdateTeacherDto dto) =>
+            _mediator.Send(new UpdateTeacherCommand(dto));
 
-        public async Task<bool> DeleteTeacherAsync(int id)
-        {
-            return await _mediator.Send(new DeleteTeacherCommand(id));
-        }
+        public Task<bool> DeleteTeacherAsync(int id) =>
+            _mediator.Send(new DeleteTeacherCommand(id));
 
-        public async Task<List<TeacherDto>> GetAllTeachersAsync()
-        {
-            return await _mediator.Send(new GetAllTeachersQuery());
-        }
+        public Task<List<TeacherDto>> GetAllTeachersAsync() =>
+            _mediator.Send(new GetAllTeachersQuery());
 
-        public async Task<TeacherDto> GetTeacherByIdAsync(int id)
-        {
-            return await _mediator.Send(new GetTeacherByldQuery(id));
-        }
+        public Task<TeacherDto> GetTeacherByIdAsync(int id) =>
+            _mediator.Send(new GetTeacherByldQuery(id));
+
+        public Task<PagedResult<TeacherDto>> GetTeachersAsync(int pageNumber, int pageSize) =>
+            _mediator.Send(new GetTeachersQuery(pageNumber, pageSize));
     }
 }

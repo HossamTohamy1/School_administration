@@ -27,29 +27,51 @@ public class AddTeacherHandler : IRequestHandler<AddTeacherCommand, TeacherDto>
 
         teacher.ClassTeachers ??= new List<ClassTeacher>();
 
-        if (request.Teacher.ClassIds != null && request.Teacher.ClassIds.Any())
+        if (request.Teacher.ClassIds?.Any() == true)
         {
+            var classIds = request.Teacher.ClassIds.ToHashSet();
+            var teacherSubjectIds = request.Teacher.SubjectIds?.ToHashSet();
+
             var classes = await _classRepository.GetAll()
-                .Where(c => request.Teacher.ClassIds.Contains(c.Id))
+                .Include(c => c.ClassSubjects)
+                .ThenInclude(cs => cs.Subject)
+                .Where(c => classIds.Contains(c.Id))
                 .ToListAsync(cancellationToken);
 
             foreach (var cls in classes)
             {
-                teacher.ClassTeachers.Add(new ClassTeacher
+                foreach (var classSubject in cls.ClassSubjects)
                 {
-                    ClassId = cls.Id,
-                    Teacher = teacher,
-                    NameTeacher = teacher.Name,
-                    NameClass = $"{cls.Grade} {cls.Section}"
-                });
+                    if (teacherSubjectIds != null && teacherSubjectIds.Contains(classSubject.SubjectId))
+                    {
+                        teacher.ClassTeachers.Add(new ClassTeacher
+                        {
+                            ClassId = cls.Id,
+                            Teacher = teacher, 
+                            SubjectId = classSubject.SubjectId,
+                            NameTeacher = teacher.Name,
+                            NameClass = $"{cls.Grade}/{cls.Section}"
+                        });
+                    }
+                }
             }
         }
 
         await _teacherRepository.AddAsync(teacher);
 
         var dto = _mapper.Map<TeacherDto>(teacher);
-        dto.ClassNames = teacher.ClassTeachers.Select(ct => ct.NameClass).ToList();
+
+        dto.SubjectIds = teacher.ClassTeachers
+                               .Select(ct => ct.SubjectId)
+                               .Distinct()
+                               .ToList();
+
+        dto.ClassNames = teacher.ClassTeachers
+                               .Select(ct => ct.NameClass)
+                               .Distinct()
+                               .ToList();
 
         return dto;
     }
+
 }

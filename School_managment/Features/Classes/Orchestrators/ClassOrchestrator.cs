@@ -1,7 +1,9 @@
 ﻿using MediatR;
+using School_managment.Common.Models;
 using School_managment.Features.Classes.Commands;
 using School_managment.Features.Classes.DTOs;
 using School_managment.Features.Classes.Queries;
+using School_managment.Features.Teachers.DTOs;
 using School_managment.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -37,6 +39,12 @@ namespace School_managment.Features.Classes.Orchestrators
         {
             return await _mediator.Send(new GetAllClassesQuery());
         }
+        public async Task<PagedResult<ClassDto>> GetAllClassesPageNumberAsync(int pageNumber, int pageSize)
+        {
+            return await _mediator.Send(new GetAllClassesPageNumberQuery(pageNumber, pageSize));
+        }
+
+
 
         public async Task<ClassDto> GetClassByIdAsync(int id)
         {

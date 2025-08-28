@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using School_managment.Features.Classes.Models;
 using School_managment.Features.Classes.Orchestrators;
 using School_managment.Features.Teachers.Orchestrators;
+using School_managment.Features.Timetables.Orchestrators;
 using School_managment.Infrastructure;
 using School_managment.Infrastructure.Interface;
 using School_managment.Infrastructure.Repositories;
@@ -32,7 +33,7 @@ builder.Services.AddAutoMapper(cfg =>
 });
 
 builder.Services.AddScoped<ClassOrchestrator>();
-
+builder.Services.AddScoped<ITimeTableOrchestrator, TimeTableOrchestrator>();
 
 
 

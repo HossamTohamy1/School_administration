@@ -175,3 +175,4 @@ C:\Users\hossny D. monkey\source\repos\School_managment\School_managment\bin\Deb
 C:\Users\hossny D. monkey\source\repos\School_managment\School_managment\bin\Debug\net9.0\MediatR.dll
 C:\Users\hossny D. monkey\source\repos\School_managment\School_managment\bin\Debug\net9.0\MediatR.Contracts.dll
 C:\Users\hossny D. monkey\source\repos\School_managment\School_managment\bin\Debug\net9.0\FluentValidation.dll
+C:\Users\hossny D. monkey\source\repos\School_managment\School_managment\obj\Debug\net9.0\School_managment.sourcelink.json

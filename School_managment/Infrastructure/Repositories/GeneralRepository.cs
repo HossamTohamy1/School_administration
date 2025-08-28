@@ -54,7 +54,12 @@ namespace School_managment.Infrastructure.Repositories
             entity.IsDeleted = true;
             await _context.SaveChangesAsync();
         }
-
+        // hard delete
+        public async Task HardDeleteAsync(T entity)
+        {
+            _context.Set<T>().Remove(entity);
+            await _context.SaveChangesAsync();
+        }
         public async Task<bool> UpdatePartialAsync(T entity, params string[] modifiedParams)
         {
             var existing = await _context.Set<T>().FindAsync(entity.Id);

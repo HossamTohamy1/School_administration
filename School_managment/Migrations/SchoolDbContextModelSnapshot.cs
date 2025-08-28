@@ -62,6 +62,9 @@ namespace School_managment.Migrations
                     b.Property<int>("TeacherId")
                         .HasColumnType("int");
 
+                    b.Property<int>("SubjectId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -82,7 +85,9 @@ namespace School_managment.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("ClassId", "TeacherId");
+                    b.HasKey("ClassId", "TeacherId", "SubjectId");
+
+                    b.HasIndex("SubjectId");
 
                     b.HasIndex("TeacherId");
 
@@ -222,6 +227,9 @@ namespace School_managment.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("ClassId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -241,6 +249,8 @@ namespace School_managment.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ClassId");
 
                     b.HasIndex("SubjectId");
 
@@ -333,6 +343,12 @@ namespace School_managment.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("School_managment.Features.Subjects.Models.Subject", "Subject")
+                        .WithMany()
+                        .HasForeignKey("SubjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("School_managment.Features.Teachers.Models.Teacher", "Teacher")
                         .WithMany("ClassTeachers")
                         .HasForeignKey("TeacherId")
@@ -340,6 +356,8 @@ namespace School_managment.Migrations
                         .IsRequired();
 
                     b.Navigation("Class");
+
+                    b.Navigation("Subject");
 
                     b.Navigation("Teacher");
                 });
@@ -368,6 +386,12 @@ namespace School_managment.Migrations
 
             modelBuilder.Entity("School_managment.Features.Timetables.Models.TimetableSlot", b =>
                 {
+                    b.HasOne("School_managment.Features.Classes.Models.Class", "Class")
+                        .WithMany()
+                        .HasForeignKey("ClassId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("School_managment.Features.Subjects.Models.Subject", "Subject")
                         .WithMany()
                         .HasForeignKey("SubjectId")
@@ -383,6 +407,8 @@ namespace School_managment.Migrations
                         .HasForeignKey("TimetableId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Class");
 
                     b.Navigation("Subject");
 

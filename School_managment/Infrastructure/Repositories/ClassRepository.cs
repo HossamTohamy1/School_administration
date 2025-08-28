@@ -37,6 +37,7 @@ namespace School_managment.Infrastructure.Repositories
             var classSubjects = new List<ClassSubject>();
 
             var subjectIds = subjects.Where(s => s.Id > 0).Select(s => s.Id).ToList();
+
             var existingSubjects = await _subjectRepository
                 .GetAll()
                 .Where(s => subjectIds.Contains(s.Id))
@@ -46,25 +47,36 @@ namespace School_managment.Infrastructure.Repositories
             {
                 Subject subjectEntity;
 
-                if (s.Id > 0) 
+                if (s.Id > 0)
                 {
                     subjectEntity = existingSubjects.FirstOrDefault(es => es.Id == s.Id)
                         ?? throw new KeyNotFoundException($"Subject with Id {s.Id} not found.");
                 }
-                else 
+                else
                 {
-                    subjectEntity = new Subject
+                    subjectEntity = await _subjectRepository
+                        .GetAll()
+                        .FirstOrDefaultAsync(es => es.Name == s.Name);
+
+                    if (subjectEntity == null)
                     {
-                        Name = s.Name,
-                        HoursPerWeek = s.HoursPerWeek
-                    };
+                        subjectEntity = new Subject
+                        {
+                            Name = s.Name
+                        };
+                    }
                 }
+
+                // ✅ هنا نضمن إن HoursPerWeek يتعمله Update على طول
+                subjectEntity.HoursPerWeek = s.HoursPerWeek;
 
                 classSubjects.Add(new ClassSubject { Subject = subjectEntity });
             }
 
             return classSubjects;
         }
+        
+
         public async Task LoadClassSubjectsAsync(Class entity)
         {
             await _context.Entry(entity)

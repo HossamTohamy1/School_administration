@@ -119,6 +119,47 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "School_managment.Features.Classes.Controllers.ClassController",
+    "Method": "GetPaged",
+    "RelativePath": "api/Class/paged",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "School_managment.Common.Models.PagedResult\u00601[[School_managment.Features.Classes.DTOs.ClassDto, School_managment, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "SubjectsController",
+    "Method": "GetAllSubjects",
+    "RelativePath": "api/Subjects",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "School_managment.Features.Teachers.Controllers.TeacherController",
     "Method": "GetAll",
     "RelativePath": "api/Teacher",
@@ -236,5 +277,827 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "School_managment.Features.Teachers.Controllers.TeacherController",
+    "Method": "GetTeachers",
+    "RelativePath": "api/Teacher/paged",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "School_managment.Features.Timetables.Controllers.TimeTableController",
+    "Method": "GetAll",
+    "RelativePath": "api/TimeTable",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "classId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "isActive",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[School_managment.Features.Timetables.DTOs.TimeTableDto, School_managment, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "School_managment.Features.Timetables.Controllers.TimeTableController",
+    "Method": "Create",
+    "RelativePath": "api/TimeTable",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "timeTable",
+        "Type": "School_managment.Features.Timetables.DTOs.AddTimeTableDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "School_managment.Features.Timetables.DTOs.TimeTableDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "School_managment.Features.Timetables.Controllers.TimeTableController",
+    "Method": "GetById",
+    "RelativePath": "api/TimeTable/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "School_managment.Features.Timetables.DTOs.TimeTableDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "School_managment.Features.Timetables.Controllers.TimeTableController",
+    "Method": "Update",
+    "RelativePath": "api/TimeTable/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "timeTable",
+        "Type": "School_managment.Features.Timetables.DTOs.UpdateTimeTableDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "School_managment.Features.Timetables.DTOs.TimeTableDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "School_managment.Features.Timetables.Controllers.TimeTableController",
+    "Method": "Delete",
+    "RelativePath": "api/TimeTable/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "School_managment.Features.Timetables.Controllers.TimeTableController",
+    "Method": "GetAdvancedStatistics",
+    "RelativePath": "api/TimeTable/{id}/advanced-statistics",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "School_managment.Features.Timetables.Controllers.TimeTableController\u002BAdvancedTimetableStatistics",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "School_managment.Features.Timetables.Controllers.TimeTableController",
+    "Method": "GetOptimizationSuggestions",
+    "RelativePath": "api/TimeTable/{id}/optimization-suggestions",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[School_managment.Features.Timetables.Controllers.TimeTableController\u002BOptimizationSuggestion, School_managment, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "School_managment.Features.Timetables.Controllers.TimeTableController",
+    "Method": "GetTimetableQualityReport",
+    "RelativePath": "api/TimeTable/{id}/quality-report",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "School_managment.Features.Timetables.Controllers.TimeTableController\u002BTimetableQualityReport",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "School_managment.Features.Timetables.Controllers.TimeTableController",
+    "Method": "ResolveConflictsAutomatically",
+    "RelativePath": "api/TimeTable/{id}/resolve-conflicts",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "School_managment.Features.Timetables.Orchestrators.ConflictResolutionResult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "School_managment.Features.Timetables.Controllers.TimeTableController",
+    "Method": "GetStatistics",
+    "RelativePath": "api/TimeTable/{id}/statistics",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "School_managment.Features.Timetables.Orchestrators.TimetableStatisticsDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "School_managment.Features.Timetables.Controllers.TimeTableController",
+    "Method": "UpdateStatus",
+    "RelativePath": "api/TimeTable/{id}/status",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "School_managment.Features.Timetables.Controllers.TimeTableController\u002BUpdateStatusRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "School_managment.Features.Timetables.DTOs.TimeTableDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "School_managment.Features.Timetables.Controllers.TimeTableController",
+    "Method": "SwapSlots",
+    "RelativePath": "api/TimeTable/{id}/swap-slots",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "School_managment.Features.Timetables.Orchestrators.SwapSlotsRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "School_managment.Features.Timetables.Controllers.TimeTableController",
+    "Method": "ValidateTimetable",
+    "RelativePath": "api/TimeTable/{id}/validate",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[School_managment.Features.Timetables.Orchestrators.ConflictDto, School_managment, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "School_managment.Features.Timetables.Controllers.TimeTableController",
+    "Method": "AddSlot",
+    "RelativePath": "api/TimeTable/add-slot",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "School_managment.Features.Timetables.DTOs.AddTimetableSlotForAddSlotsDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "School_managment.Features.Timetables.Controllers.TimeTableController",
+    "Method": "AssignTeacherToSlot",
+    "RelativePath": "api/TimeTable/assign-teacher",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "School_managment.Features.Timetables.Controllers.TimeTableController\u002BAssignTeacherDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "School_managment.Features.Timetables.Controllers.TimeTableController",
+    "Method": "AssignTeacherToSlot",
+    "RelativePath": "api/TimeTable/assign-teacher-to-slot",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "School_managment.Features.Timetables.Orchestrators.SlotAssignmentRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "School_managment.Features.Timetables.Orchestrators.SlotAssignmentResult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "School_managment.Features.Timetables.Controllers.TimeTableController",
+    "Method": "GetAvailableTeachersForSlot",
+    "RelativePath": "api/TimeTable/available-teachers/{classId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "classId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dayOfWeek",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "period",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[School_managment.Features.Timetables.Orchestrators.AvailableTeacherDto, School_managment, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "School_managment.Features.Timetables.Controllers.TimeTableController",
+    "Method": "BulkCheckTeacherConflicts",
+    "RelativePath": "api/TimeTable/bulk-check-conflicts",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "School_managment.Features.Timetables.Controllers.TimeTableController\u002BBulkConflictCheckRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "School_managment.Features.Timetables.Controllers.TimeTableController\u002BBulkConflictCheckResult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "School_managment.Features.Timetables.Controllers.TimeTableController",
+    "Method": "CheckTeacherConflict",
+    "RelativePath": "api/TimeTable/check-teacher-conflict",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "School_managment.Features.Timetables.Controllers.TimeTableController\u002BCheckTeacherConflictDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "School_managment.Features.Timetables.Orchestrators.TeacherConflictResult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "School_managment.Features.Timetables.Controllers.TimeTableController",
+    "Method": "GetByClass",
+    "RelativePath": "api/TimeTable/class/{classId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "classId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[School_managment.Features.Timetables.DTOs.TimeTableDto, School_managment, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "School_managment.Features.Timetables.Controllers.TimeTableController",
+    "Method": "GetActiveByClass",
+    "RelativePath": "api/TimeTable/class/{classId}/active",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "classId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "School_managment.Features.Timetables.DTOs.TimeTableDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "School_managment.Features.Timetables.Controllers.TimeTableController",
+    "Method": "GetAssignedSubjectsForClass",
+    "RelativePath": "api/TimeTable/class/{classId}/assigned-subjects",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "classId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[School_managment.Features.Timetables.Controllers.TimeTableController\u002BClassSubjectWithTeacherDto, School_managment, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "School_managment.Features.Timetables.Controllers.TimeTableController",
+    "Method": "GetAssignedTeachersForClass",
+    "RelativePath": "api/TimeTable/class/{classId}/assigned-teachers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "classId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[School_managment.Features.Timetables.Controllers.TimeTableController\u002BAssignedTeacherDto, School_managment, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "School_managment.Features.Timetables.Controllers.TimeTableController",
+    "Method": "GetClassAssignmentStatus",
+    "RelativePath": "api/TimeTable/class/{classId}/assignment-status",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "classId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "School_managment.Features.Timetables.Controllers.TimeTableController\u002BClassAssignmentStatusDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "School_managment.Features.Timetables.Controllers.TimeTableController",
+    "Method": "GetConflictPreventionSuggestions",
+    "RelativePath": "api/TimeTable/class/{classId}/conflict-prevention-suggestions",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "classId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[School_managment.Features.Timetables.Orchestrators.ConflictPreventionSuggestion, School_managment, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "School_managment.Features.Timetables.Controllers.TimeTableController",
+    "Method": "CheckGenerationReadiness",
+    "RelativePath": "api/TimeTable/class/{classId}/generation-readiness",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "classId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "School_managment.Features.Timetables.Controllers.TimeTableController\u002BClassGenerationReadiness",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "School_managment.Features.Timetables.Controllers.TimeTableController",
+    "Method": "GetSubjectsWithTeachersForClass",
+    "RelativePath": "api/TimeTable/class/{classId}/subjects-with-teachers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "classId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[School_managment.Features.Timetables.Controllers.TimeTableController\u002BClassSubjectWithTeacherDto, School_managment, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "School_managment.Features.Timetables.Controllers.TimeTableController",
+    "Method": "GenerateEnhancedSmartTimetable",
+    "RelativePath": "api/TimeTable/generate-smart/{classId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "classId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "School_managment.Features.Timetables.Orchestrators.SmartTimetableRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "School_managment.Features.Timetables.Orchestrators.SmartTimetableGenerationResult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "School_managment.Features.Timetables.Controllers.TimeTableController",
+    "Method": "GenerateSmartTimetable",
+    "RelativePath": "api/TimeTable/generate/{classId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "classId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "School_managment.Features.Timetables.Orchestrators.SmartTimetableRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "School_managment.Features.Timetables.DTOs.TimeTableDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "School_managment.Features.Timetables.Controllers.TimeTableController",
+    "Method": "DeleteSlot",
+    "RelativePath": "api/TimeTable/slots/{slotId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "slotId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "School_managment.Features.Timetables.Controllers.TimeTableController",
+    "Method": "GetTeacherAvailabilityMatrix",
+    "RelativePath": "api/TimeTable/teacher/{teacherId}/available-slots",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "teacherId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "excludeClassId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "School_managment.Features.Timetables.Controllers.TimeTableController\u002BTeacherAvailabilityMatrix",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]

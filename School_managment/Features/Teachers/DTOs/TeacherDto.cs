@@ -7,6 +7,8 @@
         public string Subject { get; set; }
         public int WeeklyQuota { get; set; }
         public List<string> RestrictedPeriods { get; set; }
+        public List<int> SubjectIds { get; set; }
+
         public List<string> ClassNames { get; set; } = new List<string>();
 
     }

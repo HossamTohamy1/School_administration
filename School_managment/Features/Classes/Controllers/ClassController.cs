@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using School_managment.Common.Enums;
+using School_managment.Common.Models;
 
 namespace School_managment.Features.Classes.Controllers
 {
@@ -18,13 +19,20 @@ namespace School_managment.Features.Classes.Controllers
         {
             _orchestrator = orchestrator;
         }
-
         [HttpGet]
         public async Task<ActionResult<List<ClassDto>>> GetAll()
         {
             var classes = await _orchestrator.GetAllClassesAsync();
             return Ok(classes);
         }
+
+        [HttpGet("paged")]
+        public async Task<ActionResult<PagedResult<ClassDto>>> GetPaged(int pageNumber = 1, int pageSize = 10)
+        {
+            var result = await _orchestrator.GetAllClassesPageNumberAsync(pageNumber, pageSize);
+            return Ok(result);
+        }
+
 
         [HttpGet("{id}")]
         public async Task<ActionResult<ClassDto>> GetById(int id)

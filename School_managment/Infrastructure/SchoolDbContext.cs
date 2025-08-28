@@ -130,12 +130,13 @@ namespace School_managment.Infrastructure
                       .OnDelete(DeleteBehavior.SetNull);
             });
 
+            
             // === ClassTeacher ===
             modelBuilder.Entity<ClassTeacher>(entity =>
             {
                 entity.ToTable("ClassTeachers");
 
-                entity.HasKey(ct => new { ct.ClassId, ct.TeacherId });
+                entity.HasKey(ct => new { ct.ClassId, ct.TeacherId, ct.SubjectId });
 
                 entity.HasOne(ct => ct.Class)
                       .WithMany(c => c.ClassTeachers)
@@ -145,6 +146,11 @@ namespace School_managment.Infrastructure
                 entity.HasOne(ct => ct.Teacher)
                       .WithMany(t => t.ClassTeachers)
                       .HasForeignKey(ct => ct.TeacherId)
+                      .OnDelete(DeleteBehavior.Cascade);
+
+                entity.HasOne(ct => ct.Subject)
+                      .WithMany()
+                      .HasForeignKey(ct => ct.SubjectId)
                       .OnDelete(DeleteBehavior.Cascade);
 
                 entity.Property(ct => ct.NameTeacher)
@@ -196,6 +202,11 @@ namespace School_managment.Infrastructure
                 entity.Property(ts => ts.DayOfWeek).IsRequired();
                 entity.Property(ts => ts.CreatedAt).IsRequired();
 
+                entity.HasOne(ts => ts.Class)
+                      .WithMany()
+                      .HasForeignKey(ts => ts.ClassId)
+                      .OnDelete(DeleteBehavior.Restrict);
+
                 entity.HasOne(ts => ts.Subject)
                       .WithMany()
                       .HasForeignKey(ts => ts.SubjectId)
@@ -211,6 +222,7 @@ namespace School_managment.Infrastructure
                       .HasForeignKey(ts => ts.TimetableId)
                       .OnDelete(DeleteBehavior.Cascade);
             });
+
 
             // === TeacherAvailability ===
             modelBuilder.Entity<TeacherAvailability>(entity =>

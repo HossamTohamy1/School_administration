@@ -146,6 +146,7 @@ namespace School_managment.Migrations
                 {
                     ClassId = table.Column<int>(type: "int", nullable: false),
                     TeacherId = table.Column<int>(type: "int", nullable: false),
+                    SubjectId = table.Column<int>(type: "int", nullable: false),
                     NameClass = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     NameTeacher = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     Id = table.Column<int>(type: "int", nullable: false),
@@ -155,11 +156,17 @@ namespace School_managment.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ClassTeachers", x => new { x.ClassId, x.TeacherId });
+                    table.PrimaryKey("PK_ClassTeachers", x => new { x.ClassId, x.TeacherId, x.SubjectId });
                     table.ForeignKey(
                         name: "FK_ClassTeachers_Classes_ClassId",
                         column: x => x.ClassId,
                         principalTable: "Classes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ClassTeachers_Subjects_SubjectId",
+                        column: x => x.SubjectId,
+                        principalTable: "Subjects",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -198,6 +205,7 @@ namespace School_managment.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    ClassId = table.Column<int>(type: "int", nullable: false),
                     TimetableId = table.Column<int>(type: "int", nullable: false),
                     Period = table.Column<int>(type: "int", nullable: false),
                     DayOfWeek = table.Column<int>(type: "int", nullable: false),
@@ -208,6 +216,12 @@ namespace School_managment.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TimetableSlots", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TimetableSlots_Classes_ClassId",
+                        column: x => x.ClassId,
+                        principalTable: "Classes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_TimetableSlots_Subjects_SubjectId",
                         column: x => x.SubjectId,
@@ -239,6 +253,11 @@ namespace School_managment.Migrations
                 column: "TeacherId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ClassTeachers_SubjectId",
+                table: "ClassTeachers",
+                column: "SubjectId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ClassTeachers_TeacherId",
                 table: "ClassTeachers",
                 column: "TeacherId");
@@ -251,6 +270,11 @@ namespace School_managment.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Timetables_ClassId",
                 table: "Timetables",
+                column: "ClassId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TimetableSlots_ClassId",
+                table: "TimetableSlots",
                 column: "ClassId");
 
             migrationBuilder.CreateIndex(

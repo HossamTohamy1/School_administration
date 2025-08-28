@@ -21,6 +21,7 @@ namespace School_managment.Infrastructure.Interface
         Task UpdateAsync(T entity);
 
         Task DeleteAsync(T entity);
+        Task HardDeleteAsync(T entity);
 
         Task<bool> UpdatePartialAsync(T entity, params string[] modifiedParams);
         Task RemoveClassSubjectsAsync(int classId, CancellationToken cancellationToken = default);

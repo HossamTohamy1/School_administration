@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using School_managment.Features.Teachers.DTOs;
+using School_managment.Features.Teachers.Models;
 using School_managment.Features.Teachers.Orchestrators;
+using School_managment.Features.Teachers.Queries;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -54,6 +57,13 @@ namespace School_managment.Features.Teachers.Controllers
             return Ok(updatedTeacher);
         }
 
+        [HttpGet("paged")]
+        public async Task<IActionResult> GetTeachers([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        {
+            var result = await _orchestrator.GetTeachersAsync(pageNumber, pageSize);
+            return Ok(result);
+        }
+
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
@@ -63,5 +73,8 @@ namespace School_managment.Features.Teachers.Controllers
 
             return NoContent();
         }
+       
     }
+
 }
+
